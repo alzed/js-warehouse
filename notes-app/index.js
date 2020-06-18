@@ -31,9 +31,7 @@ yargs.command({
             type: 'string'
         },
     },
-    handler: argv => {
-        console.log('Show note');
-    }
+    handler: argv => notes.getNote(argv.title)
 });
 
 yargs.command({
@@ -74,9 +72,7 @@ yargs.command({
 yargs.command({
     command: 'showall',
     describe: 'Show all notes',
-    handler: argv => {
-        console.log('Show all notes');
-    }
+    handler: argv => notes.getNotes()
 });
 
 yargs.parse();
