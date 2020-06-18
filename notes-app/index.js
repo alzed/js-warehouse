@@ -62,9 +62,7 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: argv => {
-        console.log('Updating note');
-    }
+    handler: argv => notes.updateNote(argv.title, argv.body)
 });
 
 yargs.command({

@@ -10,7 +10,7 @@ const addNote = (title, body) => {
             'body': body
         });
     
-        fs.writeFileSync('./notes.json', JSON.stringify(notes));
+        saveNotes(notes);
     } 
     else {
         console.log('Note with the title already present');
@@ -41,9 +41,20 @@ const removeNote = title => {
         console.log(`Note ${title} not found.`);
     }
     else{
-        fs.writeFileSync('./notes.json', JSON.stringify(filteredNotes));
+        saveNotes(filteredNotes);
         console.log('Note removed');
     }
+};
+
+const updateNote = (title, body) => {
+    let notes = loadNotes();
+    notes.forEach(note => {
+        if (note.title === title){
+            note.body = body;
+        }
+    });
+    
+    saveNotes(notes);
 };
 
 const loadNotes = () => {
@@ -56,9 +67,15 @@ const loadNotes = () => {
     }
 };
 
+const saveNotes = notes => {
+    let stringNotes = JSON.stringify(notes);
+    fs.writeFileSync('./notes.json', stringNotes);
+};
+
 module.exports = {
     addNote,
     getNotes,
     getNote,
     removeNote,
+    updateNote,
 };
