@@ -3,8 +3,8 @@ const fs = require('fs');
 const addNote = (title, body) => {
     console.log('Adding a new note...');
     let notes = loadNotes();
-    let duplicateNotes = notes.filter(note => note.title === title);
-    if (duplicateNotes.length === 0){
+    let duplicateNote = notes.find(note => note.title === title);
+    if (!duplicateNote){
         notes.push({
             'title': title,
             'body': body
@@ -29,11 +29,14 @@ const getNotes = () => {
 
 const getNote = title => {
     const notes = loadNotes();
-    let filteredNote = notes.filter(note => note.title === title);
-    if (filteredNote.length === 0){
+    let foundNote = notes.find(note => note.title === title);
+    if (foundNote){
+        console.log(foundNote[0]);
+    }
+    else {
         console.log(`No note ${title} found`);
     }
-    console.log(filteredNote[0]);
+    
 };
 
 const removeNote = title => {
