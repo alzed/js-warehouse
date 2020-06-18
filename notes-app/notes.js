@@ -31,7 +31,7 @@ const getNote = title => {
     const notes = loadNotes();
     let foundNote = notes.find(note => note.title === title);
     if (foundNote){
-        console.log(foundNote[0]);
+        console.log(foundNote);
     }
     else {
         console.log(`No note ${title} found`);
@@ -53,14 +53,23 @@ const removeNote = title => {
 };
 
 const updateNote = (title, body) => {
-    let notes = loadNotes();
+    const notes = loadNotes();
+    let update = false;
     notes.forEach(note => {
         if (note.title === title){
             note.body = body;
+            update = true;
         }
     });
     
-    saveNotes(notes);
+    if (update) {
+        saveNotes(notes);
+        console.log('Note updated');
+    }
+    else {
+        console.log(`No note ${title} found`);
+    }
+    
 };
 
 const listNotes = () => {
