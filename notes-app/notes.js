@@ -30,7 +30,10 @@ const getNotes = () => {
 const getNote = title => {
     const notes = loadNotes();
     let filteredNote = notes.filter(note => note.title === title);
-    console.log(filteredNote[0]);  
+    if (filteredNote.length === 0){
+        console.log(`No note ${title} found`);
+    }
+    console.log(filteredNote[0]);
 };
 
 const removeNote = title => {
@@ -57,6 +60,12 @@ const updateNote = (title, body) => {
     saveNotes(notes);
 };
 
+const listNotes = () => {
+    let notes = loadNotes();
+    if (notes.length === 0) { console.log('No notes found'); }
+    notes.forEach(note => console.log(note.title));
+};
+
 const loadNotes = () => {
     try {
         let notes = fs.readFileSync('./notes.json');
@@ -78,4 +87,5 @@ module.exports = {
     getNote,
     removeNote,
     updateNote,
+    listNotes
 };

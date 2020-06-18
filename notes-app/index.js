@@ -27,11 +27,15 @@ yargs.command({
     builder: {
         title: {
             describe: 'Title of the note',
-            demandOption: true,
             type: 'string'
         },
     },
-    handler: argv => notes.getNote(argv.title)
+    handler: argv => { 
+        if (argv.title){
+            return notes.getNote(argv.title);
+        }
+        return notes.getNotes();
+    }
 });
 
 yargs.command({
@@ -66,9 +70,9 @@ yargs.command({
 });
 
 yargs.command({
-    command: 'showall',
-    describe: 'Show all notes',
-    handler: argv => notes.getNotes()
+    command: 'list',
+    describe: 'List title of all notes',
+    handler: argv => notes.listNotes()
 });
 
 yargs.parse();
