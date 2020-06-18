@@ -28,12 +28,22 @@ const getNotes = () => {
 };
 
 const getNote = title => {
-    let notes = loadNotes();
-    notes.forEach(note => {
-        if (note.title === title) {
-            console.log(note);
-        }
-    });
+    const notes = loadNotes();
+    let filteredNote = notes.filter(note => note.title === title);
+    console.log(filteredNote[0]);  
+};
+
+const removeNote = title => {
+    const notes = loadNotes();
+    let filteredNotes = notes.filter(note => note.title !== title);
+    
+    if (notes.length === filteredNotes.length){
+        console.log(`Note ${title} not found.`);
+    }
+    else{
+        fs.writeFileSync('./notes.json', JSON.stringify(filteredNotes));
+        console.log('Note removed');
+    }
 };
 
 const loadNotes = () => {
@@ -50,4 +60,5 @@ module.exports = {
     addNote,
     getNotes,
     getNote,
+    removeNote,
 };
