@@ -1,23 +1,20 @@
-const request = require('request');
-const config = require('./config');
-
 const geocode = require('./utils/geocode');
+const weather = require('./utils/weather');
 
-const weatherApi = config.weather_api_key;
-const weatherUrl = `http://api.weatherstack.com/current?access_key=${weatherApi}&query=Chennai`;
-
-request({url: weatherUrl, json:true},
-    (error, response) => {
-        let current = response.body.current;
-        console.log(`${current.weather_descriptions[0]}. Current temperature is ${current.temperature} degree Celcius`);
-    }); 
-
-
-geocode('1', (error, data) => {
+geocode('Chennai', (error, data) => {
     if (error) {
-        console.log('Error', error);
+        console.log('Error:', error);
     } else {
         console.log('Latitude: ', data.latitude);
         console.log('Longitude: ', data.longitude);
+    }
+});
+
+weather(13.09, 80.27, (error, data) => {
+    if (error) {
+        console.log('Error:', error);
+    } else {
+        console.log('Weather: ', data.weather);
+        console.log('Temperature: ', data.temperature);
     }
 });
