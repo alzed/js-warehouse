@@ -5,16 +5,15 @@ geocode('Chennai', (error, data) => {
     if (error) {
         console.log('Error:', error);
     } else {
-        console.log('Latitude: ', data.latitude);
-        console.log('Longitude: ', data.longitude);
-    }
-});
-
-weather(13.09, 80.27, (error, data) => {
-    if (error) {
-        console.log('Error:', error);
-    } else {
-        console.log('Weather: ', data.weather);
-        console.log('Temperature: ', data.temperature);
+        weather(data.latitude, data.longitude, (error, forecast) => {
+            if (error) {
+                console.log('Error:', error);
+            } else {
+                let location = `${forecast.location}, ${forecast.region}, ${forecast.country}`;
+                console.log(location);
+                console.log('Weather: ', forecast.weather);
+                console.log('Temperature: ', forecast.temperature);
+            }
+        });
     }
 });

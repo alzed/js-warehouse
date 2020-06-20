@@ -14,6 +14,9 @@ const weather = (latitude, longitude, callback) => {
                 callback('Unable to find location', undefined);
             } else {
                 callback(undefined, {
+                    location: response.body.location.name, 
+                    region: response.body.location.region,
+                    country: response.body.location.country,
                     weather: response.body.current.weather_descriptions[0],
                     temperature: response.body.current.temperature   
                 });
