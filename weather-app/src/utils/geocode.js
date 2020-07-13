@@ -14,15 +14,15 @@ const geocode = (address) => {
         resposeType: 'json'
     }).then(response => {
         if (response.data.message === 'Not Found' || response.data.features.length === 0) {
-            return ('Unable to find location', undefined);
+            return { 'error': 'Unable to find location' };
         } else {
-            return (undefined, {
+            return {
                 latitude: response.data.features[0].center[1],
                 longitude: response.data.features[0].center[0]
-            });
+            };
         }
     }).catch(error => {
-        return ('Unable to connect to geolocation servers', undefined);
+        return { 'error': 'Unable to connect to geolocation servers' };
     });
 
     return coordinates;

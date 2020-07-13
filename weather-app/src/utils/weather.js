@@ -12,18 +12,18 @@ const weather = (latitude, longitude) => {
         responseType: 'json'
     }).then(response => {
         if (response.data.error) {
-            return ('Unable to find location', undefined);
+            return { 'error': 'Unable to find location' };
         } else {
-            return (undefined, {
+            return {
                 location: response.data.location.name, 
                 region: response.data.location.region,
                 country: response.data.location.country,
                 weather: response.data.current.weather_descriptions[0],
                 temperature: response.data.current.temperature   
-            });
+            };
         }    
     }).catch(error => {
-        return ('Unable to connect to weather services', undefined);
+        return { 'error': 'Unable to connect to weather services' };
     }); 
 
     return weatherData;
