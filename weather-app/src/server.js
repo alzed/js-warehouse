@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
-const forecast = require('./forecast'); 
 const geocode = require('./utils/geocode');
 const weather = require('./utils/weather');
 
@@ -31,7 +30,7 @@ app.get('/weather', (req, res) => {
     }
     geocode(req.query.address).then(data => {
         weather(data.latitude, data.longitude).then(data => {
-            res.json(data); 
+            res.render('weather', {data: data});
         }).catch(error => res.json({'error': error}));
     }).catch(error => res.json({'error': error}));
 });
