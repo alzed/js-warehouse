@@ -19,7 +19,8 @@ const weather = (latitude, longitude) => {
                 region: response.data.location.region,
                 country: response.data.location.country,
                 weather: response.data.current.weather_descriptions[0],
-                temperature: response.data.current.temperature   
+                temperature: response.data.current.temperature,
+                image: response.data.current.weather_icons[0]   
             };
         }    
     }).catch(error => {
