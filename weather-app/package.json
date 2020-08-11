@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "start": "nodemon -e js,hbs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "test": "nodemon -e js,hbs"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +14,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "hbs": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
