@@ -24,15 +24,15 @@ app.get('', (req, res) => {
 
 app.get('/weather', (req, res) => {
     if (!req.query.address){
-        return res.send({
+        return res.json({
             error: 'No address provided'
         });
     }
     geocode(req.query.address).then(data => {
         weather(data.latitude, data.longitude).then(data => {
-            res.render('weather', {data: data});
-        }).catch(error => res.json({'error': error}));
-    }).catch(error => res.json({'error': error}));
+            res.json(data);
+        }).catch(error => res.json(error));
+    }).catch(error => res.json(error));
 });
 
 app.get('*', (req, res) => {
