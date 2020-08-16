@@ -5,7 +5,7 @@ const geocode = require('./utils/geocode');
 const weather = require('./utils/weather');
 
 const app = express();
-
+const port = process.env.PORT || 3000;
 const staticPath = path.join(__dirname, '../static'); 
 const viewsPath = path.join(__dirname, '../templates/views');
 const partialsPath = path.join(__dirname, '../templates/partials');
@@ -42,6 +42,6 @@ app.get('*', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('Server is listening in port 3000');
+app.listen(port, () => {
+    console.log('Server is listening in port ' + port);
 });
