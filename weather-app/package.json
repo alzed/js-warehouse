@@ -5,7 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "test": "nodemon -e js,hbs"
+    "dev": "nodemon -e js,hbs",
+    "publish": "cd ../ && git subtree push --prefix weather-app weather-app master || true"
   },
   "author": "",
   "license": "ISC",
